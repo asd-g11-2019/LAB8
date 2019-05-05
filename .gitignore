@@ -1,0 +1,8 @@
+.vscode
+lab8*
+tree*
+
+a.out*
+*.gch
+
+.DS_Store
