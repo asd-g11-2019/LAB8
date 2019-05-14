@@ -16,28 +16,23 @@
 
 using namespace std; 
 namespace graph {
-  struct vertexNode;
+  struct VertexNode;
 };
  
 namespace list{
 
 /**************************** Tipi e costanti *********************************************/
 
-struct Elem {
-  graph::vertexNode* node;
-  int len;
+typedef string Elem;
+
+const Elem emptyElem = "$#$#$";
+
+struct ListNode {
+  Elem elem;
+  ListNode* next;
 };
 
-//typedef vertexNode* Elem;      // tipo base, compatibile con il tipo Label dell'grafo 
-
-const Elem emptyElem = {
-  nullptr,
-  0
-};
-
-struct lista;
-
-typedef lista * List;
+typedef ListNode* List;
 
 // ATTENZIONE: per la realizzazione del laboratorio 8 non vi serviranno tutte le seguenti funzioni ma solo un sottoinsieme
 void clear(List&);          /* "smantella" la lista */
@@ -52,4 +47,4 @@ bool isEmpty(const List&);
 int size(const List&);
 }
 
-void printList(const list::List&);
+void printList(const list::List&, int indent = 0);

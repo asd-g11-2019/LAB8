@@ -197,7 +197,7 @@ int main() {
         if (list::isEmpty(adjlst)) 
            cout << "\nLa lista di adiacenza e' vuota (motivo: l'etichetta e' quella di una citta' senza strade incidenti oppure non e' presente nel grafo)\n";
         else {
-           cout << "\nLe citta' adiacenti ad " << s1 << " sono"; 
+           cout << "\nLe citta' adiacenti ad " << s1 << " sono" << endl; 
            printList(adjlst);
         }
       break; 
@@ -215,7 +215,7 @@ int main() {
            cout << "Nessun cammino trovato tra " << s1 << " e " << s2 << endl;
         else {
                 cout << "Trovato un cammino lungo km " << len << endl;
-                cout << s1 << " :: ";
+                cout << s1 << " :: " << endl;
                 printList(path);
               }
        break;

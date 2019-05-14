@@ -14,11 +14,6 @@
 using namespace list;
 
 
-struct list::lista {
-  Elem elem;
-  list::lista* next;
-};
-
 /****************************************************************/
 void list::clear(List& l){
    
@@ -39,27 +34,30 @@ void list::add(int pos, Elem e, List& l) // aggiunge e nella posizione pos
 }
 
 /****************************************************************/
-bool list::addBack(Elem e, List& l) // aggiunge e in coda
+bool list::addBack (Elem e, List& l) // aggiunge e in coda
 {
   if (l == nullptr) {
-    l = new lista;
+    l = new ListNode;
     l->elem = e;
     l->next = nullptr;
 
     return true;
   }
 
-  if (l->elem.node == e.node)
+  if (l->elem == e)
     return false;
 
-  addBack(e, l->next);
+  return addBack(e, l->next);
 }
 
 
 /****************************************************************/
 void list::addFront(Elem e, List& l) // aggiunge e in coda
 {
-   
+  ListNode* n = new ListNode;
+  n->elem = e;
+  n->next = l;
+  l = n;
 }
 
 /****************************************************************/
@@ -100,14 +98,17 @@ int list::size(const List& l)
 
 
 /****************************************************************/
-void printList(const List& l)
+void printList(const List& l, int indent)
 {
   if (l == nullptr)
     return;
 
-  graph::vertexNode* vn = l->elem.node;
+  Elem elem = l->elem;
 
-  cout << vn << endl;
+  for (int i=0; i<indent; i++)
+    cout << " ";
 
-  printList(l->next);
+  cout << elem << endl;
+
+  printList(l->next, indent);
 }

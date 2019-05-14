@@ -15,16 +15,26 @@ namespace graph {
 typedef string Label;
 typedef int Weight;
 
-struct vertexNode {
-  Label label;
-  list::List adjList;
-  vertexNode* next;
-  bool visited;
+struct AdjNode {
+  VertexNode* p;
+  Weight weight;
+  AdjNode* next;
 };
 
-typedef vertexNode* Graph; // un grafo e' identificato dal puntatore al primo vertice inserito
+typedef AdjNode* AdjList;
 
-const Graph emptyGraph = NULL;
+struct VertexNode {
+  Label label;
+  AdjList adjList;
+  bool visited;
+  VertexNode* next;
+};
+
+typedef VertexNode* Graph; // un grafo e' identificato dal puntatore al primo vertice inserito
+
+const AdjList noAdjNode = nullptr;
+const Graph noVertexNode = nullptr;
+const int invalidPath = -1;
 
 // createEmptyGraph restituisce il grafo vuoto 
 Graph createEmptyGraph();
@@ -33,7 +43,7 @@ Graph createEmptyGraph();
 bool addVertex(Label, Graph&);
 
 // Cerca e restituisce il vertice corrispondente a label
-vertexNode* getVertex (Label, Graph&);
+VertexNode* getVertex (Label, Graph&);
 
 // Aggiunge nuovo arco tra i due nodi con etichette le due stringe e peso
 // l'intero. Fallisce se non sono presenti tutti e due i nodi o se l'arco
