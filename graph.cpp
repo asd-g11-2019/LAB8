@@ -182,10 +182,15 @@ int findPathAux (VertexNode* v, Label l2, list::List &path, const Graph& g) {
     int w = findPathAux(adjNode->p, l2, path, g); // Proseguo la ricerca passando per quel nodo
     if (w >= 0) { // Se la strada e' valida (e arrivata in fondo, perche' ha ritornato)
       list::addFront(adjNode->p->label, path); // Aggiungo la citta' alla lista
+      v->visited = false; // Resetto la flag visited
       return adjNode->weight + w; // Restituisco la distanza percorsa fin'ora
     }
     adjNode = adjNode->next; // Passo al prossimo nodo
   }
+
+  v->visited = false; // Resetto la flag visited
+
+  return -1; // Restituisco path non valida
 }
 
 // Ritorna un cammino tra una citta' ed un altra
